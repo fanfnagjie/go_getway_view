@@ -83,13 +83,13 @@ export const constantRoutes = [
     path: '/service',
     component: Layout,
     redirect: '/service/service-list',
-    name: 'Table',
+    name: '服务',
     children: [
       {
         path: 'service-list',
         component: () => import('@/views/service/service-list'),
         name: '服务',
-        meta: { title: '服务列表' }
+        meta: { title: '服务列表', icon: 'table', affix: true }
       }
     ]
   }
