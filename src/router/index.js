@@ -78,6 +78,20 @@ export const constantRoutes = [
         meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
       }
     ]
+  },
+  {
+    path: '/service',
+    component: Layout,
+    redirect: '/service/service-list',
+    name: 'Table',
+    children: [
+      {
+        path: 'service-list',
+        component: () => import('@/views/service/service-list'),
+        name: '服务',
+        meta: { title: '服务列表' }
+      }
+    ]
   }
 ]
 
