@@ -5,9 +5,11 @@
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         搜索
       </el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">
-        添加
-      </el-button>
+      <router-link :to="'/service/service_create_http/'">
+        <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit">
+          添加
+        </el-button>
+      </router-link>
     </div>
 
     <el-table
@@ -60,10 +62,12 @@
         </template>
       </el-table-column>
       <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
-        <template slot-scope="{row,$index}">
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            修改
-          </el-button>
+        <template slot-scope="{row}">
+          <router-link :to="'/service/service_edit_http/'+row.id">
+            <el-button type="primary" size="mini">
+              修改
+            </el-button>
+          </router-link>
           <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
             删除
           </el-button>
@@ -71,7 +75,7 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" :page_no.sync="listQuery.page" :page_size.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
 
@@ -79,13 +83,6 @@
 import { fetchList } from '@/api/service'
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
-
-const calendarTypeOptions = [
-  { key: 'CN', display_name: 'China' },
-  { key: 'US', display_name: 'USA' },
-  { key: 'JP', display_name: 'Japan' },
-  { key: 'EU', display_name: 'Eurozone' }
-]
 
 // arr to obj, such as { CN : "China", US : "USA" }
 
@@ -116,7 +113,6 @@ export default {
         sort: '+id'
       },
       importanceOptions: [1, 2, 3],
-      calendarTypeOptions,
       temp: {
         id: undefined,
         importance: 1,
@@ -188,9 +184,6 @@ export default {
         duration: 2000
       })
       this.list.splice(index, 1)
-    },
-    handleCreate() {
-      console.log('handleCreate')
     }
   }
 }

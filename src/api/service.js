@@ -8,34 +8,26 @@ export function fetchList(query) {
   })
 }
 
-export function fetchArticle(id) {
+export function serviceDetail(query) {
   return request({
-    url: '/vue-element-admin/article/detail',
+    url: '/service/service_detail',
     method: 'get',
-    params: { id }
+    params: query
   })
 }
 
-export function fetchPv(pv) {
+export function serviceAddHttp(data) {
   return request({
-    url: '/vue-element-admin/article/pv',
-    method: 'get',
-    params: { pv }
-  })
-}
-
-export function createArticle(data) {
-  return request({
-    url: '/vue-element-admin/article/create',
+    url: '/service/service_add_http',
     method: 'post',
-    data
+    params: data
   })
 }
 
-export function updateArticle(data) {
+export function serviceUpdateHttp(data) {
   return request({
-    url: '/vue-element-admin/article/update',
+    url: '/service/service_update_http',
     method: 'post',
-    data
+    params: data
   })
 }
