@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function fetchList(query) {
+export function serviceList(query) {
   return request({
     url: '/service/service_list',
     method: 'get',
@@ -29,5 +29,21 @@ export function serviceUpdateHttp(data) {
     url: '/service/service_update_http',
     method: 'post',
     params: data
+  })
+}
+
+export function serviceDelete(query) {
+  return request({
+    url: '/service/service_delete',
+    method: 'get',
+    params: query
+  })
+}
+
+export function serviceStat(query) {
+  return request({
+    url: '/service/service_stat',
+    method: 'get',
+    params: query
   })
 }
